@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity() {
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 // Code to execute when the English text changes
-                editTextMorse.setText("...")
+                editTextMorse.setText(translate(editTextEnglish.getText().toString()))
             }
         })
 
@@ -72,5 +72,59 @@ class MainActivity : AppCompatActivity() {
 
 
     }
-
+    /**
+    Function for inputting a string of english and outputting a string of morse code. One pause is used for new letter, two for new word
+    '.'' = short
+    '-' = long
+    ' ' = pause
+    accepted charecters are A-Z, a-z, 0-9, and space
+     */
+    fun translate(upperMorse : String): String {
+        var morse = upperMorse.lowercase()//input string tolowercase
+        var morseString : String = "" // creates string for output
+        //for size of input string
+        for(i in 0..morse.length-1){
+            //when input string at i equals
+            when(morse[i]){
+                'a'-> morseString += ".- "
+                'b'-> morseString += "-... "
+                'c'-> morseString += "-.-. "
+                'd'-> morseString += "-.. "
+                'e'-> morseString += ". "
+                'f'-> morseString += "..-. "
+                'g'-> morseString += "--. "
+                'h'-> morseString += ".... "
+                'i'-> morseString += ".. "
+                'j'-> morseString += ".--- "
+                'k'-> morseString += "-.- "
+                'l'-> morseString += ".-.. "
+                'm'-> morseString += "-- "
+                'n'-> morseString += "-. "
+                'o'-> morseString += "--- "
+                'p'-> morseString += ".--. "
+                'q'-> morseString += "--.- "
+                'r'-> morseString += ".-. "
+                's'-> morseString += "... "
+                't'-> morseString += "- "
+                'u'-> morseString += "..- "
+                'v'-> morseString += "...- "
+                'w'-> morseString += ".-- "
+                'x'-> morseString += "-..- "
+                'y'-> morseString += "-.-- "
+                'z'-> morseString += "--.. "
+                '0'-> morseString += "----- "
+                '1'-> morseString += ".---- "
+                '2'-> morseString += "..--- "
+                '3'-> morseString += "...-- "
+                '4'-> morseString += "....- "
+                '5'-> morseString += "..... "
+                '6'-> morseString += "-... "
+                '7'-> morseString += "--... "
+                '8'-> morseString += "---.. "
+                '9'-> morseString += "----. "
+                ' '-> morseString += "  "
+            }
+        }
+        return morseString
+    }
 }
