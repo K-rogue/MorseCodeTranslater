@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">MorseCodeTranslater</string>
+    <string name="app_name">Morse Code Translater</string>
+    <string name="button_hint">Output Mores/Enter Morse</string>
+    <string name="switch_label">Switch Input Type</string>
+    <string name="english_hint">English</string>
+    <string name="morse_hint">Morse</string>
 </resources>

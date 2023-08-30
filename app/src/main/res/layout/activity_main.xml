@@ -4,15 +4,63 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:padding="16dp"
+    android:background="@color/background">
 
-    <TextView
-        android:layout_width="wrap_content"
+
+    <!-- First Editable Text Window for Morse Code/English -->
+    <EditText
+        android:id="@+id/editTextEnglish"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="20dp"
+        android:hint="@string/english_hint"
+        android:importantForAutofill="no"
+        android:background="@drawable/rounded_edittext"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.20"
+        tools:ignore="TextFields" />
+
+    <!-- Second Editable Text Window for English/Morse Code -->
+    <EditText
+        android:importantForAutofill="no"
+        android:id="@+id/editTextMorse"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="20dp"
+        android:hint="@string/morse_hint"
+        android:background="@drawable/rounded_edittext"
+        app:layout_constraintTop_toBottomOf="@id/editTextEnglish"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.20"
+        tools:ignore="TextFields" />
+
+    <!-- Large Centered Circular Button for Manual Morse Code Entry -->
+    <Button
+        android:id="@+id/buttonEnterMorse"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_margin="50dp"
+        android:layout_marginBottom="100dp"
+        android:background="@drawable/circular_button"
+        android:text="@string/button_hint"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toTopOf="@id/outputButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+    <!-- Button for output -->
+    <Button
+        android:id="@+id/outputButton"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:text="Output Morse"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
