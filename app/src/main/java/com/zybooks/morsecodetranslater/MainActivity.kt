@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
             if (source.matches(Regex("[A-Z0-9.,?'!/()&:;=+-_\"$@ ]*"))) null else ""
         })
         editTextMorse.filters = arrayOf<InputFilter>(InputFilter.AllCaps(), InputFilter.LengthFilter(50), InputFilter { source, _, _, _, _, _ ->
-            if (source.matches(Regex("[._ ]*"))) null else ""
+            if (source.matches(Regex("[.\\-\\ ]*"))) null else ""
         })
 
         // Listener for regular clicks (short presses)
@@ -56,6 +56,7 @@ class MainActivity : AppCompatActivity() {
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 // Code to execute when the English text changes
+                editTextMorse.setText("...")
             }
         })
 
