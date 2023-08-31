@@ -3,17 +3,19 @@ package com.zybooks.morsecodetranslater
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Vibrator
 import android.text.Editable
 import android.text.InputFilter
 import android.text.TextWatcher
+import android.view.MotionEvent
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Switch
 
 class MainActivity : AppCompatActivity() {
 
-
-
+    private lateinit var vibrator: Vibrator // Var with vibrator property
+    private val timescale = 300L // 1 time unit is set to 300 ms
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,9 +49,18 @@ class MainActivity : AppCompatActivity() {
 
             true // Return true to indicate that the long press was handled
         }
-        // Listner for output click
+
+        vibrator = getSystemService(VIBRATOR_SERVICE) as Vibrator
+
+        // Listener for output click
         outputButton.setOnClickListener {
+            println("Button Clicked")
+            val morseString = editTextMorse.text.toString() // Get string of morse text
+            for (i in 0 until morseString.length) {
+                morseToVibrate(morseString[i]) // Vibrate based on character
+            }
         }
+
         editTextEnglish.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun afterTextChanged(s: Editable?) {}
@@ -126,5 +137,39 @@ class MainActivity : AppCompatActivity() {
             }
         }
         return morseString
+    }
+
+    private fun vibrateDot() {
+        vibrator.vibrate(timescale) //Dot is 1 time unit
+        Thread.sleep(timescale * 2) // Give time to vibrate + delay
+        println("Vibrate Dot")
+    }
+
+    private fun vibrateDash() {
+        vibrator.vibrate(timescale * 3) // Dash is 3 time
+        Thread.sleep(timescale * 4) // Give time to vibrate + delay
+        println("Vibrate Dash")
+    }
+
+    private fun stopVibration() {
+        vibrator.cancel() // Stop vibrating
+        Thread.sleep(timescale) // Delay time
+        println("Stop vibrating")
+    }
+
+    /**
+    Function for reading morse and outputting vibration
+    '.' = short (vibrate 1 timescale)
+    '-' = long (vibrate 3 timescales)
+    ' ' = pause (stop vibration for 1 timescale)
+    no other characters should be in the morse text box
+     */
+    private fun morseToVibrate(morseChar : Char){
+        when (morseChar) {
+            '.' -> vibrateDot()
+            '-' -> vibrateDash()
+            ' ' -> stopVibration()
+            else -> println("Non-morse character in morse box")
+        }
     }
 }
