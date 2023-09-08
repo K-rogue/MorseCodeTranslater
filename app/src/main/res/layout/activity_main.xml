@@ -50,7 +50,7 @@
         android:textSize="10sp"
         app:layout_constraintBottom_toTopOf="@id/outputButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"  />
     <!-- Button for output -->
     <Button
         android:id="@+id/outputButton"
